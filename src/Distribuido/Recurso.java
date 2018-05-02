@@ -39,5 +39,13 @@ public class Recurso {
         hayDato=true;
         notifyAll();
     }
+
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
+        this.dato = dato;
+    }
     
 }

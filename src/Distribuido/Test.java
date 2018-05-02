@@ -19,14 +19,14 @@ public class Test {
         Proceso p1 = new Proceso(cont,1,orden);
         Proceso p2 = new Proceso(cont,2,orden);
         Proceso p3 = new Proceso(cont,3,orden);
-//        Proceso p4 = new Proceso(cont,4,orden);
-//        Proceso p5 = new Proceso(cont,5,orden);
-//        Proceso p6 = new Proceso(cont,6,orden);
+        Proceso p4 = new Proceso(cont,4,orden);
+        Proceso p5 = new Proceso(cont,5,orden);
+        Proceso p6 = new Proceso(cont,6,orden);
         p1.start();
         p2.start();
         p3.start();
-//        p4.start();
-//        p5.start();
-//        p6.start();
+        p4.start();
+        p5.start();
+        p6.start();
     }
 }

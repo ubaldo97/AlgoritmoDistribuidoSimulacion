@@ -44,20 +44,30 @@ public class Proceso extends Thread {
         String cad="";
          try {
         System.out.println("El proceso: "+id+" solicita el recurso");
-        
-        
+        GUI.mostrar.setText(GUI.mostrar.getText()+"El proceso: "+id+" solicita el recurso \n");
+        GUI.mostrar.setCaretPosition(GUI.mostrar.getDocument().getLength());
+      
         while(!orden.isEmpty()){
         if(!cont.hayDato){          
-                 System.out.println("El proceso: "+id+" espera el recurso");           
+                 System.out.println("El proceso: "+id+" espera el recurso");
+                 GUI.mostrar.setText(GUI.mostrar.getText()+"El proceso: "+id+" espera el recurso \n");
+                 GUI.mostrar.setCaretPosition(GUI.mostrar.getDocument().getLength());
             wait();          
         }else{
                cont.sacar();
                System.out.println("El proceso: "+orden.get(0)+" Recibe OK");
+               GUI.mostrar.setText(GUI.mostrar.getText()+"El proceso: "+orden.get(0)+" Recibe OK \n");
+               GUI.mostrar.setCaretPosition(GUI.mostrar.getDocument().getLength());
                Thread.sleep(1000);
                 System.out.println("El proceso: "+orden.get(0)+" esta usando el recurso");
+                GUI.mostrar.setText(GUI.mostrar.getText()+"El proceso: "+orden.get(0)+" esta usando el recurso \n");
+                GUI.mostrar.setCaretPosition(GUI.mostrar.getDocument().getLength());
                 Thread.sleep(3000);
                 System.out.println("El proceso: "+orden.get(0)+" terminó de usar el recurso");
+                  GUI.mostrar.setText(GUI.mostrar.getText()+"El proceso: "+orden.get(0)+" terminó de usar el recurso \n"); 
+                  GUI.mostrar.setCaretPosition(GUI.mostrar.getDocument().getLength());
                 cont.poner("P"+orden.get(0)+" ");
+                GUI.lista.setText(GUI.lista.getText()+"P"+orden.get(0)+" ");
                 orden.remove(0);
                 notifyAll();
            
