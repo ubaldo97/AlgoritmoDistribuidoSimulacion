@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Proceso extends Thread {
      private Recurso cont;
      private int id;
      private ArrayList<Integer> orden;
-
+  
     public Proceso(Recurso c,int i,ArrayList ord) {
         this.cont = c;
         this.id = i;
@@ -28,8 +29,8 @@ public class Proceso extends Thread {
          try {
             
              Random rnd = new Random();
-             int tiempo = rnd.nextInt(5)+1;
-             Thread.sleep(tiempo*1000);
+             int tiempo = rnd.nextInt(5000)+1000;
+             Thread.sleep(tiempo);
              solicitarRecurso();
              
              
@@ -40,15 +41,15 @@ public class Proceso extends Thread {
 
     private synchronized void  solicitarRecurso() throws InterruptedException {
         orden.add(id);
+        String cad="";
          try {
         System.out.println("El proceso: "+id+" solicita el recurso");
+        
+        
         while(!orden.isEmpty()){
-        if(!cont.hayDato){
-           
+        if(!cont.hayDato){          
                  System.out.println("El proceso: "+id+" espera el recurso");           
-            wait();
-               
-           
+            wait();          
         }else{
                cont.sacar();
                System.out.println("El proceso: "+orden.get(0)+" Recibe OK");
@@ -56,14 +57,14 @@ public class Proceso extends Thread {
                 System.out.println("El proceso: "+orden.get(0)+" esta usando el recurso");
                 Thread.sleep(3000);
                 System.out.println("El proceso: "+orden.get(0)+" terminó de usar el recurso");
-                cont.poner(""+id);
+                cont.poner("P"+orden.get(0)+" ");
                 orden.remove(0);
                 notifyAll();
            
         }}
          } catch (InterruptedException ex) {
                 System.out.println(ex.getMessage());
-            }finally{notifyAll();}
+            }
     }
 
 }
